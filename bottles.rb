@@ -1,11 +1,7 @@
 # bottle verse class
 class BottleVerse
   def lyrics(bottles_at_start, bottles_at_end)
-    verses = ''
-    bottles_at_start.downto(bottles_at_end) do |bottles|
-      verses += verse(bottles)
-    end
-    verses
+    bottles_at_start.downto(bottles_at_end).map { |bottles| verse(bottles) }.join('\\n')
   end
 
   def verse(bottles)
@@ -16,7 +12,7 @@ class BottleVerse
     when 1
       "#{bottles} bottle of beer on the wall, " \
       "#{bottles} bottle of beer.\\n" \
-      "Take one down and pass it around, no more bottles of beer on the wall.\\n"
+      'Take one down and pass it around, no more bottles of beer on the wall.\\n'
     when 2
       "#{bottles} bottles of beer on the wall, " \
       "#{bottles} bottles of beer.\\n" \
