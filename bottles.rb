@@ -1,5 +1,9 @@
 # bottle verse class
 class BottleVerse
+  def song
+    lyrics(99, 0)
+  end
+
   def lyrics(bottles_at_start, bottles_at_end)
     bottles_at_start.downto(bottles_at_end).map { |bottles| verse(bottles) }.join('\\n')
   end
