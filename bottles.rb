@@ -9,19 +9,8 @@ class BottleVerse
   end
 
   def verse(bottles)
-    case bottles
-    when 0
-      'No more bottles of beer on the wall, no more bottles of beer.\n' \
-      'Go to the store and buy some more, 99 bottles of beer on the wall.\n'
-    when 1
-      "#{bottles} #{container(bottles)} of beer on the wall, " \
-      "#{bottles} #{container(bottles)} of beer.\\n" \
-      'Take one down and pass it around, no more bottles of beer on the wall.\\n'
-    else
-      "#{bottles} #{container(bottles)} of beer on the wall, " \
-      "#{bottles} #{container(bottles)} of beer.\\n" \
-      "Take one down and pass it around, #{bottles - 1} #{container(bottles - 1)} of beer on the wall.\\n"
-    end
+    "#{quantity(bottles).capitalize} #{container(bottles)} of beer on the wall, #{quantity(bottles)} #{container(bottles)} of beer.\\n" \
+    "#{action(bottles)}, #{quantity(successor(bottles))} #{container(successor(bottles))} of beer on the wall.\\n"
   end
 
   def container(number)
@@ -29,6 +18,38 @@ class BottleVerse
       'bottle'
     else
       'bottles'
+    end
+  end
+
+  def pronoun(number)
+    if number == 1
+      'it'
+    else
+      'one'
+    end
+  end
+
+  def quantity(number)
+    if number.zero?
+      'no more'
+    else
+      number.to_s
+    end
+  end
+
+  def action(number)
+    if number.zero?
+      'Go to the store and buy some more'
+    else
+      "Take #{pronoun(number)} down and pass it around"
+    end
+  end
+
+  def successor(number)
+    if number.zero?
+      99
+    else
+      number - 1
     end
   end
 end
