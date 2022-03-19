@@ -8,7 +8,7 @@ class BottleVerseTest < Minitest::Test
     expected =
       '99 bottles of beer on the wall, 99 bottles of beer.\n' \
       'Take one down and pass it around, 98 bottles of beer on the wall.\n'
-    assert_equal expected, BottleVerse.new.verse(99)
+    assert_equal expected, Bottles.new.verse(99)
   end
 
   def test_first_two_verses
@@ -17,7 +17,7 @@ class BottleVerseTest < Minitest::Test
       'Take one down and pass it around, 98 bottles of beer on the wall.\n\n' \
       '98 bottles of beer on the wall, 98 bottles of beer.\n' \
       'Take one down and pass it around, 97 bottles of beer on the wall.\n'
-    assert_equal expected, BottleVerse.new.lyrics(99, 98)
+    assert_equal expected, Bottles.new.verses(99, 98)
   end
 
   def test_multiple_verses
@@ -30,28 +30,28 @@ class BottleVerseTest < Minitest::Test
       'Take one down and pass it around, 12 bottles of beer on the wall.\n\n' \
       '12 bottles of beer on the wall, 12 bottles of beer.\n' \
       'Take one down and pass it around, 11 bottles of beer on the wall.\n'
-    assert_equal expected, BottleVerse.new.lyrics(15, 12)
+    assert_equal expected, Bottles.new.verses(15, 12)
   end
 
   def test_two_bottles
     expected =
       '2 bottles of beer on the wall, 2 bottles of beer.\n' \
       'Take one down and pass it around, 1 bottle of beer on the wall.\n'
-    assert_equal expected, BottleVerse.new.verse(2)
+    assert_equal expected, Bottles.new.verse(2)
   end
 
   def test_one_bottle_verse
     expected =
       '1 bottle of beer on the wall, 1 bottle of beer.\n' \
       'Take it down and pass it around, no more bottles of beer on the wall.\n'
-    assert_equal expected, BottleVerse.new.verse(1)
+    assert_equal expected, Bottles.new.verse(1)
   end
 
   def test_no_more_bottles_verse
     expected =
       'No more bottles of beer on the wall, no more bottles of beer.\n' \
       'Go to the store and buy some more, 99 bottles of beer on the wall.\n'
-    assert_equal expected, BottleVerse.new.verse(0)
+    assert_equal expected, Bottles.new.verse(0)
   end
 
   def test_entire_song
@@ -256,7 +256,7 @@ class BottleVerseTest < Minitest::Test
       'Take it down and pass it around, no more bottles of beer on the wall.\n\n' \
       'No more bottles of beer on the wall, no more bottles of beer.\n' \
       'Go to the store and buy some more, 99 bottles of beer on the wall.\n'
-    assert_equal expected, BottleVerse.new.song
+    assert_equal expected, Bottles.new.song
   end
 
 end

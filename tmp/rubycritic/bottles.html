@@ -98,7 +98,7 @@
     </div>
 
     <code class="prettyprint linenums lang-ruby file-code js-file-code"># bottle verse class
-class BottleVerse
+class Bottles
   def song
     lyrics(99, 0)
   end
@@ -107,7 +107,7 @@ class BottleVerse
     bottles_at_start.downto(bottles_at_end).map { |bottles| verse(bottles) }.join(&#39;\\n&#39;)
   end
 
-  def verse(bottles)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>BottleVerse#verse doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
+  def verse(bottles)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>Bottles#verse doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
     case bottles
     when 0
       &#39;No more bottles of beer on the wall, no more bottles of beer.\n&#39; \
@@ -119,11 +119,11 @@ class BottleVerse
     when 2
       &quot;#{bottles} bottles of beer on the wall, &quot; \
       &quot;#{bottles} bottles of beer.\\n&quot; \
-      &quot;Take one down and pass it around, #{bottles - 1} bottle of beer on the wall.\\n&quot;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>BottleVerse#verse calls 'bottles - 1' 2 times</span>              <span>Locations:</span>                  <a href="bottles.html#L23" class="js-smell-location">0</a>                  <a href="bottles.html#L27" class="js-smell-location">1</a>                  </div>  </li></ol>
+      &quot;Take one down and pass it around, #{bottles - 1} bottle of beer on the wall.\\n&quot;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>Bottles#verse calls 'bottles - 1' 2 times</span>              <span>Locations:</span>                  <a href="bottles.html#L23" class="js-smell-location">0</a>                  <a href="bottles.html#L27" class="js-smell-location">1</a>                  </div>  </li></ol>
     else
       &quot;#{bottles} bottles of beer on the wall, &quot; \
       &quot;#{bottles} bottles of beer.\\n&quot; \
-      &quot;Take one down and pass it around, #{bottles - 1} bottles of beer on the wall.\\n&quot;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>BottleVerse#verse calls 'bottles - 1' 2 times</span>              <span>Locations:</span>                  <a href="bottles.html#L23" class="js-smell-location">0</a>                  <a href="bottles.html#L27" class="js-smell-location">1</a>                  </div>  </li></ol>
+      &quot;Take one down and pass it around, #{bottles - 1} bottles of beer on the wall.\\n&quot;<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>Bottles#verse calls 'bottles - 1' 2 times</span>              <span>Locations:</span>                  <a href="bottles.html#L23" class="js-smell-location">0</a>                  <a href="bottles.html#L27" class="js-smell-location">1</a>                  </div>  </li></ol>
     end
   end
 end
