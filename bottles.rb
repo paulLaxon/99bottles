@@ -5,14 +5,14 @@ class Bottles
   end
 
   def verses(number_at_start, number_at_end)
-    number_at_start.downto(number_at_end).map { |number| verse(number) }.join('\\n')
+    number_at_start.downto(number_at_end).map { |number| verse(number) }.join("\n")
   end
 
   def verse(number)
     bottle_number = BottleNumber.for(number)
 
-    "#{bottle_number} of beer on the wall, #{bottle_number} of beer.\\n".capitalize +
-      "#{bottle_number.action}, #{bottle_number.successor} of beer on the wall.\\n"
+    "#{bottle_number} of beer on the wall, #{bottle_number} of beer.\n".capitalize +
+      "#{bottle_number.action}, #{bottle_number.successor} of beer on the wall.\n"
   end
 end
 
