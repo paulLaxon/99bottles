@@ -24,18 +24,29 @@ class BottleNumber
     @number = number
   end
 
+  #########################################
+  # open the factory by automatically registering the child classes
   def self.for(number)
-    case number
-    when 0
-      BottleNumber0
-    when 1
-      BottleNumber1
-    when 6
-      BottleNumber6
-    else
-      BottleNumber
-    end.new(number)
+    registry.find { |candidate| candidate.handles?(number) }.new(number)
   end
+
+  def self.registry
+    @registry ||= [BottleNumber]
+  end
+
+  def self.register(candidate)
+    registry.prepend(candidate)
+  end
+
+  def self.inherited(candidate)
+    super
+    register(candidate)
+  end
+
+  def self.handles?(_number)
+    true
+  end
+  #########################################
 
   def to_s
     "#{quantity} #{container}"
@@ -64,6 +75,10 @@ end
 
 # bottle number 0
 class BottleNumber0 < BottleNumber
+  def self.handles?(number)
+    number.zero?
+  end
+
   def quantity
     'no more'
   end
@@ -79,6 +94,10 @@ end
 
 # bottle number 1
 class BottleNumber1 < BottleNumber
+  def self.handles?(number)
+    number == 1
+  end
+
   def container
     'bottle'
   end
@@ -90,6 +109,10 @@ end
 
 # bottle number 6
 class BottleNumber6 < BottleNumber
+  def self.handles?(number)
+    number == 6
+  end
+
   def container
     'six-pack'
   end
