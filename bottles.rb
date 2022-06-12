@@ -1,39 +1,20 @@
-# bottleverse class
-class BottleVerse
-  attr_reader :bottle_number
-
-  def initialize(bottle_number)
-    @bottle_number = bottle_number
-  end
-
-  def self.lyrics(number)
-    new(BottleNumber.for(number)).lyrics
-  end
-
-  def lyrics
-    "#{bottle_number} of beer on the wall, #{bottle_number} of beer.\n".capitalize +
-      "#{bottle_number.action}, #{bottle_number.successor} of beer on the wall.\n"
-  end
-end
+# frozen_string_literal: true
 
 # bottles class
 class Bottles
-  attr_reader :verse_template
-
-  def initialize(verse_template: BottleVerse)
-    @verse_template = verse_template
-  end
-
   def song
     verses(99, 0)
   end
 
-  def verses(number_at_start, number_at_end)
-    number_at_start.downto(number_at_end).map { |number| verse(number) }.join("\n")
+  def verses(high, low)
+    high.downto(low).map { |number| verse(number) }.join("\n")
   end
 
   def verse(number)
-    verse_template.lyrics(number)
+    bottle_number = BottleNumber.for(number)
+
+    "#{bottle_number} of beer on the wall, #{bottle_number} of beer.\n".capitalize +
+      "#{bottle_number.action}, #{bottle_number.successor} of beer on the wall.\n"
   end
 end
 
@@ -45,8 +26,6 @@ class BottleNumber
     @number = number
   end
 
-  #########################################
-  # open the factory by automatically registering the child classes
   def self.for(number)
     registry.find { |candidate| candidate.handles?(number) }.new(number)
   end
@@ -60,14 +39,13 @@ class BottleNumber
   end
 
   def self.inherited(candidate)
-    super
+    # super - not needed?
     register(candidate)
   end
 
   def self.handles?(_number)
     true
   end
-  #########################################
 
   def to_s
     "#{quantity} #{container}"
@@ -77,12 +55,12 @@ class BottleNumber
     'bottles'
   end
 
-  def pronoun
-    'one'
-  end
-
   def quantity
     number.to_s
+  end
+
+  def pronoun
+    'one'
   end
 
   def action
@@ -94,26 +72,26 @@ class BottleNumber
   end
 end
 
-# bottle number 0
+# bottlenumber0 class
 class BottleNumber0 < BottleNumber
   def self.handles?(number)
-    number.zero?
+    number == 0
   end
 
   def quantity
     'no more'
   end
 
-  def action
-    'Go to the store and buy some more'
-  end
-
   def successor
     BottleNumber.for(99)
   end
+
+  def action
+    'Go to the store and buy some more'
+  end
 end
 
-# bottle number 1
+# bottlenumber1 class
 class BottleNumber1 < BottleNumber
   def self.handles?(number)
     number == 1
@@ -128,7 +106,7 @@ class BottleNumber1 < BottleNumber
   end
 end
 
-# bottle number 6
+# bottlenumber6 class
 class BottleNumber6 < BottleNumber
   def self.handles?(number)
     number == 6
@@ -139,6 +117,6 @@ class BottleNumber6 < BottleNumber
   end
 
   def quantity
-    1
+    '1'
   end
 end
